@@ -8,7 +8,7 @@ import (
 	"io"
 	"net/http"
 
-	"github.com/gtkit/go-zhipu/utils"
+	"github.com/gtkit/llm-zhipu/utils"
 )
 
 type ChatCompletion[T ChatCompletionRequest] interface {

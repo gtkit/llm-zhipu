@@ -2,6 +2,7 @@ package zhipu
 
 import (
 	"context"
+	"errors"
 	"net/http"
 	"time"
 )
@@ -78,18 +79,23 @@ func (c *Client) CreateChatCompletion(
 		return
 	}
 
-	return ChatCompletionResponse{
-		ID:      glm.Data.TaskID,
-		Object:  glm.Msg,
-		Created: time.Now().Unix(),
-		Model:   request.Model,
-		Choices: []ChatCompletionChoice{
-			{
-				Message: glm.Data.Choices[0],
+	if len(glm.Data.Choices) > 0 {
+		return ChatCompletionResponse{
+			ID:      glm.Data.TaskID,
+			Object:  glm.Msg,
+			Created: time.Now().Unix(),
+			Model:   request.Model,
+			Choices: []ChatCompletionChoice{
+				{
+					Message: glm.Data.Choices[0],
+				},
 			},
-		},
-		Usage: Usage{
-			TotalTokens: glm.Data.Usage.TotalTokens,
-		},
-	}, nil
+			Usage: Usage{
+				TotalTokens: glm.Data.Usage.TotalTokens,
+			},
+		}, nil
+	}
+	err = errors.New("返回内容为空")
+	return
+
 }

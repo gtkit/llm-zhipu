@@ -12,7 +12,7 @@ import (
 	"net/http"
 	"sync"
 
-	"github.com/gtkit/go-zhipu/utils"
+	"github.com/gtkit/llm-zhipu/utils"
 )
 
 var (

@@ -10,7 +10,7 @@ import (
 	"testing"
 	"time"
 
-	"github.com/gtkit/go-zhipu"
+	zhipu "github.com/gtkit/llm-zhipu"
 )
 
 func TestZpChat(t *testing.T) {
